@@ -10,19 +10,19 @@ public class User {
     private final List<Trip> trips = new ArrayList<>();
 
     public List<User> getFriends() {
-        return friends;
+        return this.friends;
     }
 
     public List<Trip> trips() {
-        return trips;
+        return this.trips;
     }
 
     public void addFriend(User user) {
-        friends.add(user);
+        this.friends.add(user);
     }
 
     public void addTrip(Trip trip) {
-        trips.add(trip);
+        this.trips.add(trip);
     }
 
     public boolean isFriend(User user) {

@@ -1,5 +1,7 @@
 package com.example.tripservicekata.trip;
 
+import static java.util.Objects.isNull;
+
 import com.example.tripservicekata.exception.UserNotLoggedInException;
 import com.example.tripservicekata.user.User;
 import com.example.tripservicekata.user.UserSession;
@@ -15,16 +17,17 @@ public class TripService {
     }
 
     public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
-        List<Trip> tripList = new ArrayList<>();
+        List<Trip> trips;
         User loggedUser = this.userSession.getLoggedUser();
-        if (loggedUser != null) {
-            if (user.isFriend(loggedUser)) {
-                tripList = TripDAO.findTripsByUser(user);
-            }
-            return tripList;
-        } else {
+        if (isNull(loggedUser)) {
             throw new UserNotLoggedInException();
         }
+        if (user.isFriend(loggedUser)) {
+            trips = TripDAO.findTripsByUser(user);
+        } else {
+            trips = new ArrayList<>();
+        }
+        return trips;
     }
 
 }
