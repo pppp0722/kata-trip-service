@@ -17,11 +17,11 @@ public class TripService {
     }
 
     public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
-        List<Trip> trips;
         User loggedUser = this.userSession.getLoggedUser();
         if (isNull(loggedUser)) {
             throw new UserNotLoggedInException();
         }
+        List<Trip> trips;
         if (user.isFriend(loggedUser)) {
             trips = TripDAO.findTripsByUser(user);
         } else {
