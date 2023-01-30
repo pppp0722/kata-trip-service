@@ -6,8 +6,8 @@ import java.util.List;
 
 public class User {
 
-    private List<User> friends = new ArrayList<>();
-    private List<Trip> trips = new ArrayList<>();
+    private final List<User> friends = new ArrayList<>();
+    private final List<Trip> trips = new ArrayList<>();
 
     public List<User> getFriends() {
         return friends;
@@ -25,4 +25,14 @@ public class User {
         trips.add(trip);
     }
 
+    public boolean isFriend(User user) {
+        boolean isFriend = false;
+        for (User friend : this.getFriends()) {
+            if (user.equals(friend)) {
+                isFriend = true;
+                break;
+            }
+        }
+        return isFriend;
+    }
 }
