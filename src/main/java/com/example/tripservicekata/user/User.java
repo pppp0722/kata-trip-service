@@ -1,29 +1,28 @@
 package com.example.tripservicekata.user;
 
 import com.example.tripservicekata.trip.Trip;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
 
-	private List<Trip> trips = new ArrayList<>();
-	private List<User> friends = new ArrayList<>();
-	
-	public List<User> getFriends() {
-		return friends;
-	}
-	
-	public void addFriend(User user) {
-		friends.add(user);
-	}
+    private List<User> friends = new ArrayList<>();
+    private List<Trip> trips = new ArrayList<>();
 
-	public void addTrip(Trip trip) {
-		trips.add(trip);
-	}
-	
-	public List<Trip> trips() {
-		return trips;
-	}
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public List<Trip> trips() {
+        return trips;
+    }
+
+    public void addFriend(User user) {
+        friends.add(user);
+    }
+
+    public void addTrip(Trip trip) {
+        trips.add(trip);
+    }
 
 }
