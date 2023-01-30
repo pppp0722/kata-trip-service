@@ -3,38 +3,21 @@ package com.example.tripservicekata;
 import com.example.tripservicekata.exception.UserNotLoggedInException;
 import com.example.tripservicekata.trip.Trip;
 import com.example.tripservicekata.trip.TripDAO;
+import com.example.tripservicekata.trip.TripService;
 import com.example.tripservicekata.user.User;
 import com.example.tripservicekata.user.UserSession;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class TripService_Original {
 
-	private UserSession userSession;
+    private final TripService tripService;
 
-	public TripService_Original(UserSession userSession) {
-		this.userSession = userSession;
-	}
+    private final UserSession userSession;
 
-	public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
-		List<Trip> tripList = new ArrayList<>();
-		User loggedUser = this.userSession.getLoggedUser();
-		boolean isFriend = false;
-		if (loggedUser != null) {
-			for (User friend : user.getFriends()) {
-				if (friend.equals(loggedUser)) {
-					isFriend = true;
-					break;
-				}
-			}
-			if (isFriend) {
-				tripList = TripDAO.findTripsByUser(user);
-			}
-			return tripList;
-		} else {
-			throw new UserNotLoggedInException();
-		}
-	}
+    public TripService_Original(UserSession userSession, TripService tripService) {
+        this.userSession = userSession;
+        this.tripService = tripService;
+    }
 
 }
