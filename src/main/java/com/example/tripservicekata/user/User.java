@@ -26,13 +26,7 @@ public class User {
     }
 
     public boolean isFriend(User user) {
-        boolean isFriend = false;
-        for (User friend : this.getFriends()) {
-            if (user.equals(friend)) {
-                isFriend = true;
-                break;
-            }
-        }
-        return isFriend;
+        return this.getFriends().stream().anyMatch(user::equals);
     }
+
 }
